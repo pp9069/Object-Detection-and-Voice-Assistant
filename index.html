@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>AI object detection for disabled</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <link rel="stylesheet" href="style.css">
+  <link rel="shortcut icon" type="image/jpeg" href="favicon.png">
+  <script src="https://unpkg.com/ml5@latest/dist/ml5.min.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+
+</head>
+
+<body>
+  <div class="bar">
+    <div class="in"></div>
+  </div>
+  <div class="d-flex justify-content-between m-3">
+    <h3> Object Detector  <button class="btn-floating pulse" onclick="toggleCard()"><i class="material-icons">'i'</i></button></h3>
+    
+    <br>
+
+    
+    
+    
+    <table>
+      <tr>
+        <td style="color: bisque;">AI:</td>
+        <td>
+          <div class="switch">
+            <label>
+              Off
+              <input type="checkbox" id="ai" disabled>
+              <span class="lever"></span>
+              On
+            </label>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p class="range-field">
+            <div type="range" id="fps" min="1" max="60" value="50"></div>
+          </p>
+        </td>
+      </tr>
+    </table>
+  </div>
+  
+  <a class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">Cam</i></a>  
+
+  <h2 class="d-flex justify-content-center align-items-center" class="abc" id="loadingText"></h2> 
+  
+  
+
+  <video playsinline autoplay muted controls="true" id="video"></video>
+  <div class="d-flex justify-content-center align-items-center">
+
+    <canvas class="col-6" id="c1" style="width:550px;height:400px;"></canvas>
+  
+    <div class="row col-6">
+      <div class="card-panel-container">
+        <div class="card-panel pink hide  ">
+          <span class="white-text">
+  
+            <span id="xaxis"></span>
+            <span id="yaxis"></span>
+            <span id="width"></span>
+            <span id="height"></span>
+            
+            <span id="obj"></span>
+    </span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <script>
+    var modelIsLoaded = false;
+
+    // Create a ObjectDetector method
+    const objectDetector = ml5.objectDetector('cocossd', {}, modelLoaded);
+
+    // When the model is loaded
+    function modelLoaded() {
+      console.log("Model Loaded!");
+      modelIsLoaded = true;
+    }
+  </script>
+  <script src="video.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+</body>
+
+</html>
